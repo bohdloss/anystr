@@ -1,6 +1,8 @@
 #![cfg_attr(doc_cfg, feature(doc_cfg))]
 #![cfg_attr(feature = "unstable", feature(error_in_core))]
 #![cfg_attr(not(feature = "std"), no_std)]
+#![doc = include_str!("../README.md")]
+
 #[cfg(feature = "alloc")]
 extern crate alloc;
 extern crate core;
@@ -89,6 +91,7 @@ impl Encoding {
 	}
 }
 
+/// An error occurred trying to convert a string or char primitive into its `ASCII` equivalent
 #[derive(Debug, Display)]
 pub enum AsciiError {
 	#[display("AsAsciiStrError: {0}")]
@@ -111,6 +114,7 @@ impl From<ToAsciiCharError> for AsciiError {
 
 impl_error!(AsciiError);
 
+/// Any error that may occur while converting a builtin string to the appropriate encoding.
 #[derive(Debug, Display)]
 pub enum ConversionError {
 	#[display("The string couldn't be converted to ASCII: {0}")]
@@ -448,7 +452,7 @@ impl AnyString {
 		}
 	}
 
-	/// Returns the length of this `AnyString`, in bytes, not [`char`]s or
+	/// Returns the length of this `AnyString`, in bytes, not [char][`prim@char`]s or
 	/// graphemes. In other words, it might not be what a human considers the
 	/// length of the string.
 	///
@@ -524,7 +528,7 @@ impl AnyString {
 		}
 	}
 
-	/// Appends the given [`char`] to the end of this `AnyString`.
+	/// Appends the given [char][`prim@char`] to the end of this `AnyString`.
 	///
 	/// An error is returned if the string contains characters not
 	/// supported by the encoding.
@@ -590,7 +594,7 @@ impl AnyString {
 	///
 	/// # Panics
 	///
-	/// Panics if `new_len` does not lie on a [`char`] boundary.
+	/// Panics if `new_len` does not lie on a [char][`prim@char`] boundary.
 	///
 	/// # Examples
 	///
@@ -642,7 +646,7 @@ impl AnyString {
 		}
 	}
 
-	/// Removes a [`char`] from this `AnyString` at a byte position and returns it.
+	/// Removes a [char][`prim@char`] from this `AnyString` at a byte position and returns it.
 	///
 	/// This is an *O*(*n*) operation, as it requires copying every element in the
 	/// buffer.
@@ -650,7 +654,7 @@ impl AnyString {
 	/// # Panics
 	///
 	/// Panics if `idx` is larger than or equal to the `AnyString`'s length,
-	/// or if it does not lie on a [`char`] boundary.
+	/// or if it does not lie on a [char][`prim@char`] boundary.
 	///
 	/// # Examples
 	///
@@ -762,7 +766,7 @@ impl AnyString {
 	/// # Panics
 	///
 	/// Panics if `idx` is larger than the `AnyString`'s length, or if it does not
-	/// lie on a [`char`] boundary.
+	/// lie on a [char][`prim@char`] boundary.
 	///
 	/// # Examples
 	///
@@ -791,14 +795,14 @@ impl AnyString {
 	/// Splits the string into two at the given byte index.
 	///
 	/// Returns a newly allocated `AnyString`. `self` contains bytes `[0, at)`, and
-	/// the returned `AnyString` contains bytes `[at, len)`. `at` must be on a [`char`]
+	/// the returned `AnyString` contains bytes `[at, len)`. `at` must be on a [char][`prim@char`]
 	/// boundary.
 	///
 	/// Note that the capacity of `self` does not change.
 	///
 	/// # Panics
 	///
-	/// Panics if `at` is not on a [`char`] boundary, or if it is beyond the end
+	/// Panics if `at` is not on a [char][`prim@char`] boundary, or if it is beyond the end
 	/// of the string.
 	///
 	/// # Examples
@@ -840,7 +844,7 @@ impl AnyString {
 		}
 	}
 
-	/// Returns an iterator over the [`char`]s of this string.
+	/// Returns an iterator over the [char][`prim@char`]s of this string.
 	#[inline]
 	pub fn chars(&self) -> AnyChars {
 		match self {
@@ -1072,7 +1076,7 @@ impl<'a> AnyStr<'a> {
 		}
 	}
 
-	/// Returns an iterator over the [`char`]s of this string.
+	/// Returns an iterator over the [char][`prim@char`]s of this string.
 	#[inline]
 	pub fn chars(&self) -> AnyChars {
 		match self {
