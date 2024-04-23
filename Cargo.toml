@@ -1,6 +1,6 @@
 [package]
 name = "anystr"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "An abstraction over string encoding that supports ASCII, UTF-8, UTF-16 and UTF-32"
 repository = "https://github.com/bohdloss/anystr"
