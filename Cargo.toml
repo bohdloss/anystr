@@ -1,0 +1,20 @@
+[package]
+name = "anystr"
+version = "0.0.0"
+edition = "2021"
+description = "An abstraction over string encoding that supports ASCII, UTF-8, UTF-16 and UTF-32"
+respository = "https://github.com/bohdloss/anystr"
+readme = "README.md"
+keywords = ["any", "string", "ascii", "utf-8", "utf-16", "utf-32"]
+categories = ["no-std", "encoding", "text-processing"]
+license = "MIT"
+exclude = [".git*"]
+
+[dependencies]
+ascii = { version = "1.1.0", features = [] }
+widestring = { version = "1.1.0", features = [] }
+
+[features]
+default = ["std"]
+alloc = ["ascii/alloc", "widestring/alloc"]
+std = ["alloc", "ascii/std", "widestring/std"]
